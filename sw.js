@@ -26,27 +26,27 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-4a011ccc493b4f8030a3.js"
+    "url": "webpack-runtime-64c418a86ce79fc585a7.js"
   },
   {
-    "url": "commons.56401ca89d19e22a344f.css"
+    "url": "commons.21dff0d3955498c72669.css"
   },
   {
     "url": "commons-309af886587a3b8310fc.js"
   },
   {
-    "url": "app-791ffa5fa8fab36c7007.js"
+    "url": "app-3b59a2c9d23ac0c0c3ff.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-2b7e02d00aee53241577.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "e87f631ad35eb6835c75031720763540"
+    "revision": "a1c4cd57da36d4c154dbf0baf24a0aea"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "74241ee612514a34a59c0fa122ad5c0a"
+    "revision": "f0115516723d89e66d50be9ffa478300"
   },
   {
     "url": "manifest.webmanifest",
@@ -69,12 +69,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/gatsby-video`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-791ffa5fa8fab36c7007.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-video/app-3b59a2c9d23ac0c0c3ff.js`))) {
     return await fetch(event.request)
   }
 
@@ -87,7 +87,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/gatsby-video/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
